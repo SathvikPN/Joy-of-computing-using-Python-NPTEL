@@ -1,13 +1,41 @@
 '''
 Calculator
 '''
+def feedCalculator(operator,a,b):
+    if(operator=='+'):
+        return a+b
+    elif(operator=='-'):
+        return a-b
+    elif(operator=='*'):
+        return a*b
+    elif(operator=='/'):
+         if(b==0):
+             return ("Undefined [Divide by zero error]")
+         else:
+             return a/b
+    else:
+        print("Invalid operator")
 
 print('''I'm "Calculator"
-I perform these operations:-
-Add[+]
-Subtract[-]
-Multiply[*]
-Divide[/]
+
+I perform these operations:
+Add[+]  Subtract[-]   Multiply[*]   Divide[/]
+
+Sample Expression input:
+a+b where a,b are integers
 ''')
 
-
+while(True):
+    print("\nEnter the expression [press Q to quit]")
+    rawInput = input("Feed ")
+    if ((rawInput=='q')or(rawInput=='Q')):
+        print("-"*50)
+        break
+    expression = list(rawInput)
+    a = int(expression[0])
+    operator = expression[1]
+    b = int(expression[2])
+    print(rawInput," = ",feedCalculator(operator,a,b))
+    print("-"*25)
+print("Calculator going OFF...")
+    
