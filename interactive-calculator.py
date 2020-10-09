@@ -31,10 +31,26 @@ while(True):
     if ((rawInput=='q')or(rawInput=='Q')):
         print("-"*50)
         break
-    expression = list(rawInput)
+    for i in rawInput:
+        if (i=='+'):
+            expression = list(rawInput.split('+'))
+            operator = i
+            break
+        elif(i=='-'):
+            expression = list(rawInput.split('-'))
+            operator = i
+            break
+        elif(i=='*'):
+            expression = list(rawInput.split('*'))
+            operator = i
+            break
+        elif(i=='/'):
+            expression = list(rawInput.split('/'))
+            operator = i
+            break
     a = int(expression[0])
-    operator = expression[1]
-    b = int(expression[2])
+    
+    b = int(expression[1])
     print(rawInput," = ",feedCalculator(operator,a,b))
     print("-"*25)
 print("Calculator going OFF...")
