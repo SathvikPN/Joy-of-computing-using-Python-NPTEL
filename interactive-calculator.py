@@ -9,8 +9,9 @@ print('''I'm "Calculator"
 I perform these operations:
 Add[+]  Subtract[-]   Multiply[*]   Divide[/]
 
-Sample Expression input format:
-a+b (where a,b are real positive numbers)
+Sample Expression input format: 
+a+b 
+[only two operands a,b which are real positive numbers]
 ''')
 
 
@@ -70,7 +71,7 @@ Enter the expression [press 'Q' to exit calculator]''')
     a = float(expression[0])
     b = float(expression[1])
     print("-"*50)
-    print(rawInput," = ",feedCalculator(operator,a,b))
+    print("{}{}{} = {}".format(a,operator,b,feedCalculator(operator,a,b)))
     print("-"*50)
 print('''
 Thanks for using the service.
