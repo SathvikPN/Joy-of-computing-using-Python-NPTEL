@@ -26,7 +26,7 @@ a+b where a,b are integers
 ''')
 
 while(True):
-    print("\nEnter the expression [press Q to quit]")
+    print("\nEnter the expression [press 'Q' to exit calculator]")
     rawInput = input("Feed ")
     if ((rawInput=='q')or(rawInput=='Q')):
         print("-"*50)
@@ -48,10 +48,10 @@ while(True):
             expression = list(rawInput.split('/'))
             operator = i
             break
-    a = int(expression[0])
+    a = float(expression[0])
     
-    b = int(expression[1])
+    b = float(expression[1])
     print(rawInput," = ",feedCalculator(operator,a,b))
     print("-"*25)
-print("Calculator going OFF...")
+print("Calculator turning OFF...")
     
