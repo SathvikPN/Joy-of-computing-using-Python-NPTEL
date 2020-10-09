@@ -1,13 +1,16 @@
 '''
-Calculator
+Interactive Calculator
+author: Sathvik PN
 '''
+
+#Print Instructions about Input
 print('''I'm "Calculator"
 
 I perform these operations:
 Add[+]  Subtract[-]   Multiply[*]   Divide[/]
 
-Sample Expression input:
-a+b where a,b are real positive numbers
+Sample Expression input format:
+a+b (where a,b are real positive numbers)
 ''')
 
 
@@ -27,18 +30,30 @@ def feedCalculator(operator,a,b):
         print("Invalid operator")
 
 
-
+#Interactive Mode
 while(True):
-    print("\nEnter the expression [press 'Q' to exit calculator]")
+    print('''
+Enter the expression [press 'Q' to exit calculator]''')
+    
     rawInput = input("Feed ")
+
+    #Stop Interactive mode --> Exit
     if ((rawInput=='q')or(rawInput=='Q')):
         print("-"*50)
         break
+
+    #Checking for Mathematical Operator
     for i in rawInput:
         if (i=='+'):
+            #splitting input into 2 items [a,b]
             expression = list(rawInput.split('+'))
+
+            #preserving the operator
             operator = i
-            break
+
+            #expression needs only one operator
+            break 
+        
         elif(i=='-'):
             expression = list(rawInput.split('-'))
             operator = i
@@ -51,10 +66,15 @@ while(True):
             expression = list(rawInput.split('/'))
             operator = i
             break
+        
     a = float(expression[0])
     b = float(expression[1])
     print("-"*50)
     print(rawInput," = ",feedCalculator(operator,a,b))
     print("-"*50)
-print("Calculator turning OFF...")
+print('''
+Thanks for using the service.
+Have a good-day.
+[Calculator turning OFF...]
+Program terminated.''')
     
