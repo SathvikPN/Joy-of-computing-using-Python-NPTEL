@@ -1,6 +1,16 @@
 '''
 Calculator
 '''
+print('''I'm "Calculator"
+
+I perform these operations:
+Add[+]  Subtract[-]   Multiply[*]   Divide[/]
+
+Sample Expression input:
+a+b where a,b are real positive numbers
+''')
+
+
 def feedCalculator(operator,a,b):
     if(operator=='+'):
         return a+b
@@ -16,14 +26,7 @@ def feedCalculator(operator,a,b):
     else:
         print("Invalid operator")
 
-print('''I'm "Calculator"
 
-I perform these operations:
-Add[+]  Subtract[-]   Multiply[*]   Divide[/]
-
-Sample Expression input:
-a+b where a,b are integers
-''')
 
 while(True):
     print("\nEnter the expression [press 'Q' to exit calculator]")
@@ -49,9 +52,9 @@ while(True):
             operator = i
             break
     a = float(expression[0])
-    
     b = float(expression[1])
+    print("-"*50)
     print(rawInput," = ",feedCalculator(operator,a,b))
-    print("-"*25)
+    print("-"*50)
 print("Calculator turning OFF...")
     
