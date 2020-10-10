@@ -1,5 +1,10 @@
+'''
+Jumble Word Game
+Author: Sathvik PN
+'''
+
 print('''
-Jumbled Words Game [2 Player]
+Jumbled Words Game (2-Player)
 ''')
 
 import random
@@ -35,14 +40,12 @@ Scoreboard:
     print('*'*60)
     
     
-    
-
-
-
+#Main Function starts here...
 rounds = agree(0)
-print("*"*60)
-print("Game Begins...[Total Rounds: {}]".format(rounds))
-print("*"*60)
+print('')
+print("x"*60)
+print("The Game Begins...[Total Rounds = {}]".format(rounds))
+print("x"*60)
 
 #Score Initialisation
 s1,s2 = 0,0
@@ -51,7 +54,7 @@ s1,s2 = 0,0
 for Round in range(rounds):
     #Player1 Turn
     word = random.choice(words)
-    print(word)
+#    print(word)
     print("Jumbled Word: {}".format(shuffle_letters(word)))
     ans = input("[Player1] ")
     if(ans==word):
@@ -62,7 +65,7 @@ for Round in range(rounds):
 
     #Player 2 Turn
     word = random.choice(words)
-    print(word)
+#    print(word)
     print("Jumbled Word: {}".format(shuffle_letters(word)))
     
     ans = input("[Player2] ")
@@ -84,5 +87,5 @@ elif(s1<s2):
 [Player2] Wins the game. Congratulations...''')
 
 else:
-    print('''It was a tie!
+    print('''[[[[[ It was a tie! ]]]]]
 ''')
