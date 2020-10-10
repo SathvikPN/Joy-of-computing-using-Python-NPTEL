@@ -1,14 +1,14 @@
 '''
 Jumble Word Game
 Author: Sathvik PN
+---------------------------------------
 '''
-
-print('''
-Jumbled Words Game (2-Player)
-''')
-
 import random
-import string
+
+print("Jumbled Words Game (2-Player)")
+
+
+
 
 
 #Reading each line(contains a word) from words.txt
@@ -17,84 +17,84 @@ lines = f.read().splitlines()
 words = lines
 
 
-def agree(n):
-    while(n<1):
-        n = int(input("No. Rounds: "))
-    ans = input('''Both Agree for Rounds?
-[1]Yes [2]No
-Make choice: ''')
+def agreedRounds(rounds):
+    while(rounds<1):
+        rounds = int(input("No. Rounds: "))
+    print("Both Agree for Rounds?\n[1]Yes [2]No")
+    ans = input("Make choice: ")
     if(ans!='1'):
-        agree(0)
-    return n
+        agreedRounds(0)
+    return rounds
+
+def choose(words):
+    return random.choice(words)
+
+def jumble(word):
+    word = random.sample(word,len(word))
+    return ''.join(word)
 
 def shuffle_letters(word):
     word = list(word) #Splitting string into list of characters
     random.shuffle(word) #Jumble list characters
     jumbledWord=''.join(word) #converting list back to string
     return jumbledWord
+    
+def displayResult(s1,s2):
+    if(s1>s2):
+        print("[{}] Wins the game.Congratulations...".format(Player1))
+
+    elif(s1<s2):
+        print("[{}] Wins the game.Congratulations...".format(Player2))
+
+    else:
+        print("[ It was a tie! ]")
+
+def check_answer(word,ans,Player_score):
+    if(ans==word):
+        print("Perfect!\n")
+        Player_score = Player_score + 1
+    else:
+        print("Oops! expected <{}>\n".format(word))
+    return Player_score
 
 def displayBoard(Round,s1,s2,Player1,Player2):
     print('*'*60)
-    print('''End of the Round-{}
+    print('''{} Rounds completed.
 Scoreboard:
 [{}] {} points
 [{}] {} points'''.format(Round,Player1,s1,Player2,s2))
     print('*'*60)
-    
+
     
 #Main Function starts here...
 Player1 = input("Player1 Name: ")
 Player2 = input("Player2 Name: ")
-rounds = agree(0)
-print('')
+rounds = agreedRounds(0)
 print("-"*60)
 print("The Game Begins...[Total Rounds = {}]".format(rounds))
 print("-"*60)
 
-#Score Initialisation
-s1,s2 = 0,0
+#Initialisation
+Player1_score,Player2_score,turn = 0,0,0
 
 
-for Round in range(1,rounds+1):
+while (turn<(2*rounds)):
+    word = choose(words)
+    jumbledWord = jumble(word) #shuffle_letters(word) works with lists
+    print("Jumbled Word: {}".format(jumble(word)))
     
-    #Player1 Turn
-    word = random.choice(words)
-#    print(word)
-    print("Jumbled Word: {}".format(shuffle_letters(word)))
-    ans = input("[{}] ".format(Player1))
-    if(ans==word):
-        print("Perfect!\n")
-        s1 = s1 + 1
-    else:
-        print("Oops! it was <{}>\n".format(word))
-
-    #Player 2 Turn
-    word = random.choice(words)
-#    print(word)
-    print("Jumbled Word: {}".format(shuffle_letters(word)))
-    
-    ans = input("[{}] ".format(Player2))
-    if(ans==word):
-        print("Perfect!\n")
-        s2 = s2 + 1
-    else:
-        print("Oops! it was <{}>\n".format(word))
-
-    displayBoard(Round,s1,s2,Player1,Player2)
+    if turn%2==0:
+        ans = input("[{}] ".format(Player1))
+        Player1_score = check_answer(word,ans,Player1_score)
+        
+    elif turn%2==1:
+        ans = input("[{}] ".format(Player2))
+        Player2_score = check_answer(word,ans,Player2_score)
+  
+    turn = turn + 1
 
 
-if(s1>s2):
-    print('''
-[{}] Wins the game.
-Congratulations...'''.format(Player1))
 
-elif(s1<s2):
-    print('''
-[{}] Wins the game.
-Congratulations...'''.format(Player2))
+displayBoard(rounds,Player1_score,Player2_score,Player1,Player2)
 
-else:
-    print('''[[[[[ It was a tie! ]]]]]
-''')
-    
-    
+displayResult(Player1_score,Player2_score)
