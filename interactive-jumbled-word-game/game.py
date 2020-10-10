@@ -31,32 +31,35 @@ def shuffle_letters(word):
     jumbledWord=''.join(word) #converting list back to string
     return jumbledWord
 
-def displayBoard(Round,s1,s2):
+def displayBoard(Round,s1,s2,Player1,Player2):
     print('*'*60)
     print('''End of the Round-{}
 Scoreboard:
-[Player1] {} points
-[Player2] {} points'''.format(Round,s1,s2))
+[{}] {} points
+[{}] {} points'''.format(Round,Player1,s1,Player2,s2))
     print('*'*60)
     
     
 #Main Function starts here...
+Player1 = input("Player1 Name: ")
+Player2 = input("Player2 Name: ")
 rounds = agree(0)
 print('')
-print("x"*60)
+print("-"*60)
 print("The Game Begins...[Total Rounds = {}]".format(rounds))
-print("x"*60)
+print("-"*60)
 
 #Score Initialisation
 s1,s2 = 0,0
 
 
-for Round in range(rounds):
+for Round in range(1,rounds+1):
+    
     #Player1 Turn
     word = random.choice(words)
 #    print(word)
     print("Jumbled Word: {}".format(shuffle_letters(word)))
-    ans = input("[Player1] ")
+    ans = input("[{}] ".format(Player1))
     if(ans==word):
         print("Perfect!\n")
         s1 = s1 + 1
@@ -68,24 +71,27 @@ for Round in range(rounds):
 #    print(word)
     print("Jumbled Word: {}".format(shuffle_letters(word)))
     
-    ans = input("[Player2] ")
+    ans = input("[{}] ".format(Player2))
     if(ans==word):
         print("Perfect!\n")
         s2 = s2 + 1
     else:
         print("Oops! it was [{}]\n".format(word))
 
-    displayBoard(Round,s1,s2)
+    displayBoard(Round,s1,s2,Player1,Player2)
 
 
 if(s1>s2):
     print('''
-[Player1] Wins the game. Congratulations...''')
+[{}] Wins the game.
+Congratulations...'''.format(Player1))
 
 elif(s1<s2):
     print('''
-[Player2] Wins the game. Congratulations...''')
+[{}] Wins the game.
+Congratulations...'''.format(Player2))
 
 else:
     print('''[[[[[ It was a tie! ]]]]]
 ''')
+    
