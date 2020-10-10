@@ -10,6 +10,7 @@ Jumbled Words Game (2-Player)
 import random
 import string
 
+
 #Reading each line(contains a word) from words.txt
 f = open('words.txt', 'r')
 lines = f.read().splitlines()
@@ -19,7 +20,8 @@ words = lines
 def agree(n):
     while(n<1):
         n = int(input("No. Rounds: "))
-    ans = input('''Both Agree?[1]Yes [2]No
+    ans = input('''Both Agree for Rounds?
+[1]Yes [2]No
 Make choice: ''')
     if(ans!='1'):
         agree(0)
@@ -64,7 +66,7 @@ for Round in range(1,rounds+1):
         print("Perfect!\n")
         s1 = s1 + 1
     else:
-        print("Oops! it was [{}]\n".format(word))
+        print("Oops! it was <{}>\n".format(word))
 
     #Player 2 Turn
     word = random.choice(words)
@@ -76,7 +78,7 @@ for Round in range(1,rounds+1):
         print("Perfect!\n")
         s2 = s2 + 1
     else:
-        print("Oops! it was [{}]\n".format(word))
+        print("Oops! it was <{}>\n".format(word))
 
     displayBoard(Round,s1,s2,Player1,Player2)
 
@@ -94,4 +96,5 @@ Congratulations...'''.format(Player2))
 else:
     print('''[[[[[ It was a tie! ]]]]]
 ''')
+    
     
