@@ -15,29 +15,74 @@ def agree(n):
     while(n<1):
         n = int(input("No. Rounds: "))
     ans = input('''Both Agree?[1]Yes [2]No
-Your choice: ''')
+Make choice: ''')
     if(ans!='1'):
         agree(0)
     return n
 
 def shuffle_letters(word):
-    word = list(word)
-    random.shuffle(word)
-    print(word)
-    jumbledWord=''.join(word)
-    print(jumbledWord)
+    word = list(word) #Splitting string into list of characters
+    random.shuffle(word) #Jumble list characters
+    jumbledWord=''.join(word) #converting list back to string
+    return jumbledWord
+
+def displayBoard(Round,s1,s2):
+    print('*'*60)
+    print('''End of the Round-{}
+Scoreboard:
+[Player1] {} points
+[Player2] {} points'''.format(Round,s1,s2))
+    print('*'*60)
+    
     
     
 
 
 
 rounds = agree(0)
-print("*"*50)
+print("*"*60)
 print("Game Begins...[Total Rounds: {}]".format(rounds))
+print("*"*60)
+
+#Score Initialisation
+s1,s2 = 0,0
 
 
-word = random.choice(words)
-print(word)
-shuffle_letters(word)
+for Round in range(rounds):
+    #Player1 Turn
+    word = random.choice(words)
+    print(word)
+    print("Jumbled Word: {}".format(shuffle_letters(word)))
+    ans = input("[Player1] ")
+    if(ans==word):
+        print("Perfect!\n")
+        s1 = s1 + 1
+    else:
+        print("Oops! it was [{}]\n".format(word))
+
+    #Player 2 Turn
+    word = random.choice(words)
+    print(word)
+    print("Jumbled Word: {}".format(shuffle_letters(word)))
+    
+    ans = input("[Player2] ")
+    if(ans==word):
+        print("Perfect!\n")
+        s2 = s2 + 1
+    else:
+        print("Oops! it was [{}]\n".format(word))
+
+    displayBoard(Round,s1,s2)
 
 
+if(s1>s2):
+    print('''
+[Player1] Wins the game. Congratulations...''')
+
+elif(s1<s2):
+    print('''
+[Player2] Wins the game. Congratulations...''')
+
+else:
+    print('''It was a tie!
+''')
