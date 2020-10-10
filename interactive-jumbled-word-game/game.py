@@ -7,15 +7,10 @@ import random
 
 print("Jumbled Words Game (2-Player)")
 
-
-
-
-
 #Reading each line(contains a word) from words.txt
 f = open('words.txt', 'r')
 lines = f.read().splitlines()
 words = lines
-
 
 def agreedRounds(rounds):
     while(rounds<1):
@@ -42,10 +37,8 @@ def shuffle_letters(word):
 def displayResult(s1,s2):
     if(s1>s2):
         print("[{}] Wins the game.Congratulations...".format(Player1))
-
     elif(s1<s2):
         print("[{}] Wins the game.Congratulations...".format(Player2))
-
     else:
         print("[ It was a tie! ]")
 
@@ -65,7 +58,6 @@ Scoreboard:
 [{}] {} points'''.format(Round,Player1,s1,Player2,s2))
     print('*'*60)
 
-    
 #Main Function starts here...
 Player1 = input("Player1 Name: ")
 Player2 = input("Player2 Name: ")
@@ -76,7 +68,6 @@ print("-"*60)
 
 #Initialisation
 Player1_score,Player2_score,turn = 0,0,0
-
 
 while (turn<(2*rounds)):
     word = choose(words)
@@ -93,8 +84,5 @@ while (turn<(2*rounds)):
   
     turn = turn + 1
 
-
-
 displayBoard(rounds,Player1_score,Player2_score,Player1,Player2)
-
 displayResult(Player1_score,Player2_score)
