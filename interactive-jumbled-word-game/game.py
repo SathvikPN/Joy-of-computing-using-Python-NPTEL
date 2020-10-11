@@ -18,7 +18,7 @@ def agreedRounds(rounds):
     print("Both Agree for Rounds?\n[1]Yes [2]No")
     ans = input("Make choice: ")
     if(ans!='1'):
-        agreedRounds(0)
+        rounds=agreedRounds(0)
     return rounds
 
 def choose(words):
